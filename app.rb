@@ -2,7 +2,7 @@
 
 require 'sinatra'
 require 'json'
-require 'mysql2'
+require 'sqlite3'
 require 'httparty'
 
 require './config/request'
@@ -13,6 +13,10 @@ configure {
 }
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+before do
+	headers['server'] = 'Ruby'
+end
 
 get '/' do
 	content_type :html, 'charset' => 'utf-8'
