@@ -17,6 +17,7 @@ Servicio web desarrollado en Ruby usando el framework Sinatra, con patrones de d
 ### Rutas
 
 + get 'usuario/listar', to: 'usuario#listar'
++ post 'usuario/validar', to: 'usuario#validar'
 
 ### Rutas - Descripción
 
@@ -46,6 +47,37 @@ JSON string de la lista de usuarios.
 + Los generados por las excepciones controladas con el siguiente formato:
 
 > {"tipo_mensaje":"error","rpta_mensaje":"mensaje personalizado","error":"Error en string de la excepción"}
+
+#### [URL] + usuario/validar
+
+<b>Objetivo(s)</b>
+
+Validar si el usuario y contraseña ingresada conincide con la base de datos.
+
+<b>Método HTTP</b>
+
++ GET
+
+<b>Parámetros</b>
+
++ Argumentos en la url : ninguno
++ Query Params : usuario, contrasenia
+
+<b>Formato de respuesta OK</b>
+
+Devuelve '1' si el usuario y contraseña existen y coinciden con un registro de la base de datos, '0' si no existe coincidencia
+
+> 1
+
+<b>Formato de respuesta alternativo </b>
+
++ Los generados por las excepciones controladas con el siguiente formato:
+
+> {"tipo_mensaje":"error","rpta_mensaje":"mensaje personalizado","error":"Error en string de la excepción"}
+
++ Si no existe o no hay coincidencia con el usuario y contraseña:
+
+> 0
 
 --- 
 
