@@ -3,12 +3,9 @@
 # -*- coding: UTF-8 -*-
 # app/controllers/usuario.rb
 
-class Usuario < Controller
-    def initialize
-        @usuarios = load_model('usuarios')
-    end
-    
+class Usuario < Controller    
     def listar
-        @usuarios.listar
+		@usuarios = load_model('usuarios')
+		@usuarios.listar
     end
 end

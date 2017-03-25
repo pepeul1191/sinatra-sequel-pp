@@ -3,13 +3,14 @@ require 'sequel'
 
 class Database
 	def initialize
-		#@connection = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => '123', :database => 'db_seguridad')
-		@connection = Sequel.connect(:adapter=>'sqlite', :database=>File.expand_path('../../db/db_accesos.db', __FILE__))
+		begin
+          @connection = Sequel.connect(:adapter=>'sqlite', :database=>File.expand_path('../../db/db_accesos.db', __FILE__))
+       rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
+          {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido en Sequel con la conección con la base de datos", :error => e}.to_json
+       end
 	end
 
 	def connection
 		@connection
 	end
 end
-
-#Fuente : http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html

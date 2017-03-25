@@ -17,7 +17,7 @@ class Model
 			  	array_json << JSON[row]
 			  	array_json.to_json
 			end 
-			array_json.to_json
+			array_json
 		rescue
 			set_last_id(connection.last_id)
 		end
