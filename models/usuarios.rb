@@ -6,8 +6,7 @@
 class Usuarios  < Model
     def listar
        begin
-          rs = @connection[:usuarios].to_a
-          stringify(rs)
+          @connection[:usuarios].to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
        end
@@ -23,8 +22,7 @@ class Usuarios  < Model
     
     def listar_usuarios
        begin
-          rs = @connection[:usuarios].select(:usuario).to_a
-          stringify(rs)
+          @connection[:usuarios].select(:usuario).to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
        end
