@@ -6,7 +6,10 @@
 class Usuarios  < Model
     def listar
        begin
-          @connection[:usuarios].to_a.to_json
+          @connection['
+              SELECT U.id AS id, U.usuario AS usuario, A.momento AS momento, U.correo AS correo 
+              FROM usuarios U INNER JOIN accesos A ON U.id = A.usuario_id 
+              GROUP BY U.usuario ORDER BY U.id'].to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
        end
