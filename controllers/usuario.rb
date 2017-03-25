@@ -20,4 +20,9 @@ class Usuario < Controller
     	usuarios = load_model('usuarios')
     	usuarios.listar_usuarios
     end
+
+    def listar_permisos(usuario_id)
+    	usuarios = load_model('usuarios')
+    	usuarios.listar_permisos(usuario_id)
+    end
 end

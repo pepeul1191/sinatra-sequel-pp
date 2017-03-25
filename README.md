@@ -17,6 +17,7 @@ Servicio web desarrollado en Ruby usando el framework Sinatra, con patrones de d
 ### Rutas
 
 + get 'usuario/listar', to: 'usuario#listar'
++ get 'usuario/listar_permisos/:usuario_id', 'usuario/listar_permisos'
 + post 'usuario/validar', to: 'usuario#validar'
 
 ### Rutas - Descripción
@@ -100,9 +101,38 @@ Devolver un listado sólo el campo usuario de los usuarios.
 
 <b>Formato de respuesta OK</b>
 
-Devuelve un arragle de JSONs en string, cada JSON tendrá sólo la llave usuario y su respectivo valor.
+Devuelve un arraglo de JSONs en string, cada JSON tendrá sólo la llave usuario y su respectivo valor.
 
 > [{"usuario":"pepe"},{"usuario":"yacky"},{"usuario":"rails"},{"usuario":"fuel"}]
+
+<b>Formato de respuesta alternativo </b>
+
++ Los generados por las excepciones controladas con el siguiente formato:
+
+> {"tipo_mensaje":"error","rpta_mensaje":"mensaje personalizado","error":"Error en string de la excepción"}
+
+---
+
+#### [URL] + usuario/listar_permisos/:usuario_id
+
+<b>Objetivo(s)</b>
+
+Devolver un listado de los permisos de un usuario.
+
+<b>Método HTTP</b>
+
++ GET
+
+<b>Parámetros</b>
+
++ Argumentos en la url : usuario_id
++ Query Params : ninguno
+
+<b>Formato de respuesta OK</b>
+
+Devuelve un arraglo de JSONs en string, cada JSON mostrando el id, nombre del permiso y su respectivo valor.
+
+> [{"id":1,"nombre":"Crear usuario","existe":0,"llave":"crear_usuario"},{"id":3,"nombre":"Editar usuario","existe":0,"llave":"editar_usuario"},{"id":4,"nombre":"Ver usuario","existe":0,"llave":"ver_usuario"}]
 
 <b>Formato de respuesta alternativo </b>
 
@@ -116,8 +146,9 @@ Devuelve un arragle de JSONs en string, cada JSON tendrá sólo la llave usuario
 
 Sequel - ORM a la base de datos
 
-http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html
++ http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html
++ https://gistpages.com/posts/ruby_arrays_insert_append_length_index_remove
 	
 Framewor Sinatra :
 
-http://www.sinatrarb.com/ 
++ http://www.sinatrarb.com/ 
