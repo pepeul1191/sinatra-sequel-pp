@@ -48,6 +48,8 @@ JSON string de la lista de usuarios.
 
 > {"tipo_mensaje":"error","rpta_mensaje":"mensaje personalizado","error":"Error en string de la excepción"}
 
+---
+
 #### [URL] + usuario/validar
 
 <b>Objetivo(s)</b>
@@ -56,7 +58,7 @@ Validar si el usuario y contraseña ingresada conincide con la base de datos.
 
 <b>Método HTTP</b>
 
-+ GET
++ POST
 
 <b>Parámetros</b>
 
@@ -78,6 +80,35 @@ Devuelve '1' si el usuario y contraseña existen y coinciden con un registro de 
 + Si no existe o no hay coincidencia con el usuario y contraseña:
 
 > 0
+
+---
+
+#### [URL] + usuario/listar_usuarios
+
+<b>Objetivo(s)</b>
+
+Devolver un listado sólo el campo usuario de los usuarios.
+
+<b>Método HTTP</b>
+
++ GET
+
+<b>Parámetros</b>
+
++ Argumentos en la url : ninguno
++ Query Params : ninguno
+
+<b>Formato de respuesta OK</b>
+
+Devuelve un arragle de JSONs en string, cada JSON tendrá sólo la llave usuario y su respectivo valor.
+
+> [{"usuario":"pepe"},{"usuario":"yacky"},{"usuario":"rails"},{"usuario":"fuel"}]
+
+<b>Formato de respuesta alternativo </b>
+
++ Los generados por las excepciones controladas con el siguiente formato:
+
+> {"tipo_mensaje":"error","rpta_mensaje":"mensaje personalizado","error":"Error en string de la excepción"}
 
 --- 
 

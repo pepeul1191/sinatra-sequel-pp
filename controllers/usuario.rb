@@ -15,4 +15,9 @@ class Usuario < Controller
     	usuarios = load_model('usuarios')
     	usuarios.validar(usuario, contrasenia).to_s
     end
+
+    def listar_usuarios
+    	usuarios = load_model('usuarios')
+    	usuarios.listar_usuarios
+    end
 end

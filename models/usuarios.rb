@@ -20,4 +20,13 @@ class Usuarios  < Model
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
        end
     end
+    
+    def listar_usuarios
+       begin
+          rs = @connection[:usuarios].select(:usuario).to_a
+          stringify(rs)
+       rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
+          {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
+       end
+    end
 end
