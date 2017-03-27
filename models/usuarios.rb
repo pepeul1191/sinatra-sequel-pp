@@ -12,6 +12,8 @@ class Usuarios  < Model
               GROUP BY U.usuario ORDER BY U.id'].to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
+        ensure
+          @connection.disconnect
        end
     end
 
@@ -20,6 +22,8 @@ class Usuarios  < Model
           @connection[:usuarios].where(:usuario => usuario, :contrasenia => contrasenia).count
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
+       ensure
+          @connection.disconnect
        end
     end
     
@@ -28,6 +32,8 @@ class Usuarios  < Model
           @connection[:usuarios].select(:usuario).to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
+       ensure
+          @connection.disconnect
        end
     end
 
@@ -50,6 +56,8 @@ class Usuarios  < Model
               usuario_id].to_a.to_json
        rescue Sequel::DatabaseError => e#ZeroDivisionError#LoadError
           {:tipo_mensaje => 'error', :rpta_mensaje => "Error ocurrido un error en el  código sql", :error => e}.to_json
+       ensure
+          @connection.disconnect
        end
     end
 end
